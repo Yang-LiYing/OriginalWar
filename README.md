@@ -22,5 +22,5 @@ nodejs server,javascript game,strategy game
 	        }
 	        this.teams = new Array();
     }</pre></code>
-修改serverMaxConnections,目前有單人測試以及雙人對戰模式所以值只能設定1或2
+單人測試模式(serverMaxConnections: 1)和雙人對戰模式(serverMaxConnections: 2)
 如果想要大於兩個人玩在不僅是修改serverMaxConnections還要在initRoom新增else if(this.option.serverMaxConnections == **option設定值** && this.clientConnections == **開始遊戲人數**)內的區塊就是初始化各個玩家的位置初始soldier數量

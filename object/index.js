@@ -4,4 +4,5 @@ module.exports = {
 	Soldier: require("./Soldier"),
 	Barrack: require("./Barrack"),
 	Team: require("./Team"),
+	Room: require("./Room"),
 };

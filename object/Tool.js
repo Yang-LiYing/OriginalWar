@@ -38,21 +38,6 @@ function teamToMessage(team){
 	return msg;
 }
 
-function messageToTeam(msg){
-	var ele_sym = ",";
-	var part_sym = ":";
-	var category_sym = ";";
-	var draw_msg = [];
-
-	var category = msg.split(category_sym);
-	draw_msg.push(category[0]);
-	var parts = category[1].split(part_sym);
-	for(p = 0;p<parts.length;p++){
-		var e = parts[p].split(ele_sym);
-		draw_msg.push({ 'x': e[0],'y': e[1],'size': e[2] });
-	}
-	return draw_msg;
-}
 
 module.exports.unitDirection = unitDirection;
 module.exports.teamToMessage = teamToMessage;

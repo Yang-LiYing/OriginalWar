@@ -1,3 +1,4 @@
+//var exec = require("child_process").exec;
 var fs = require("fs");
 
 var context;
@@ -27,5 +28,13 @@ function script(response){
 	response.setHeader("Content-Type", "application/javascript");
 	response.end(game_script);
 }
+// function upload(response){
+// 	console.log("Request handler 'upload' was called.");
+// 	response.writeHead(200,{"Content": "text/plain"});
+// 	response.write("Hello Upload");
+// 	response.end();
+// }
+
 exports.start = start;
 exports.script = script;
+// exports.upload = upload;

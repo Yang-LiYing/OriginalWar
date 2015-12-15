@@ -7,7 +7,7 @@ nodejs server,javascript game,strategy game
 操作: 滑鼠 左鍵 滾輪  
 
 遊戲方法: 
-- 移動滑鼠移動或收集soldier  
+- 移動滑鼠來移動或收集soldier  
 - 滑鼠左鍵建立barrack  
 - 移動soldier攻擊不同顏色的敵人
 

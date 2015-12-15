@@ -1,6 +1,9 @@
 # OriginalWar
 nodejs server,javascript game,strategy game  
 
+開啟伺服器指令:
+ - ubuntu: nodejs index.js
+
 操作: 滑鼠 左鍵 滾輪  
 
 遊戲方法: 

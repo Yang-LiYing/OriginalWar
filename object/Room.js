@@ -30,13 +30,13 @@ function Room(id,mode){
 			var team = new Team( core ,"#123456");
 			this.teams.push(team);
 			this.teams[0].mouse = {'x': 150,'y': 200};
-			this.teams[0].addSoldiers(200);
+			this.teams[0].addSoldiers(100);
 
 			var core = new Core(450,300,{"x": 0,"y": 0});
 			var team = new Team( core ,"#654321");
 			this.teams.push(team);
 			this.teams[1].mouse = {'x': 450,'y': 300};
-			this.teams[1].addSoldiers(50);
+			this.teams[1].addSoldiers(100);
 
 			this.teams[0].enemy.push(this.teams[1]);
 			this.teams[1].enemy.push(this.teams[0]);

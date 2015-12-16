@@ -11,6 +11,7 @@ function Room(id,mode){
 	this.status = Room.status.waiting;
 	this.mode = mode;
 	this.id = id;
+	//this.clients = {};
 	this.clients = new Array(); //{'id','ws','status','room_id','team'}
 	this.teams = new Array(); //[team object , ... ]
 	this.loop;
@@ -21,7 +22,7 @@ function Room(id,mode){
 			var team = new Team( core ,"#123456");
 			this.teams.push(team);
 			this.teams[0].mouse = {'x': 100,'y': 100};
-			this.teams[0].addSoldiers(50);
+			this.teams[0].addSoldiers(100);
 
 			this.loop = setInterval(loop,10,this);
 		}else if(this.mode == Room.mode.two_player){
@@ -53,6 +54,15 @@ function Room(id,mode){
 			return true;
 		}else{
 			return false;
+		}
+	}
+	this.checkAllPlayerHasConnection = function(){
+		for(p = 0;p<this.clients.length;p++){
+			if(this.clients[p].ws.readyState == 3){
+				console.log("[Room]ID:"+this.id+":remove "+p);
+				this.clients.splice(p,1);
+				console.log("[Room]ID:"+this.id+":clients.length"+this.clients.length);
+			}
 		}
 	}
 	this.adjudicate = function(){

@@ -1,7 +1,7 @@
 var Tool = require("./Tool");
 var unitDirection = Tool.unitDirection;
 
-var Core = require("./Core")
+var Core = require("./Core");
 var Barrack = require("./Barrack");
 var Soldier = require("./Soldier");
 

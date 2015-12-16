@@ -1,6 +1,4 @@
-//var socket = new WebSocket("ws://yourip:port");
-var socket = new WebSocket("ws://127.0.0.1:8898");  //single test
-
+var socket = new WebSocket("ws://127.0.0.1:8898");  //sing.le test
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
@@ -16,7 +14,7 @@ var id;
 var room_id;
 
 var status;
-
+var server_status;
 //tool
 function messageToTeam(msg){
 	var ele_sym = ",";
@@ -126,6 +124,15 @@ socket.onmessage = function(e){
 	}else if(action == "teams"){
 		msg = body;
 		draw();
+	}
+}
+socket.onclose = function(e){
+	console.log(e.code);
+	if(e.code == 1006){
+		server_status = 1006;
+		console.log("[Socket closed] Server Error. error code:1006");
+	}else{
+		console.log("[Socket closed] Untreated Error! code: "+e.code);
 	}
 }
 

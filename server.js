@@ -80,14 +80,14 @@ GameServer.prototype.start = function(){
 		ws.send(getPlayerOptionMsg("id",this.clientConnections.toString()));
 		ws.send(getPlayerOptionMsg("status","idle"));
 		this.clientConnections += 1;
-		this.makeAPair();
+		this.makeAPair(Room.mode.single_player); //change mode on this
 	}
 	function getPlayerOptionMsg(name,value){
 		return "setting*"+name+":"+value;
 	}
 }
 
-GameServer.prototype.makeAPair = function(){
+GameServer.prototype.makeAPair = function(mode){
 	var idle_player = 0;
 	for(var key in this.clients){
 		if(!this.clients.hasOwnProperty(key)){ //if this.client has not key then breake
@@ -99,9 +99,9 @@ GameServer.prototype.makeAPair = function(){
 	}
 	console.log("[MakeAPair] idle_player: "+idle_player);
 	//single_player  tow_player
-	if(idle_player >= Room.mode.single_player.number_of_player){
+	if(idle_player >= mode.number_of_player){
 		//console.log("[Room Message] creating...");
-		var room = new Room(this.amount_of_room , Room.mode.single_player);
+		var room = new Room(this.amount_of_room , mode);
 		room.init();
 		this.rooms[this.amount_of_room] = room;
 		for(var key in this.clients){

@@ -12,15 +12,6 @@ nodejs server,javascript game,strategy game
 - 移動soldier**攻擊**不同顏色的敵人
 
 模式調整:  
-- server.js  
-<pre><code>function GameServer(){
-            this.clientConnections = 0;
-	        this.clients = [];
-	        this.option = {
-		        serverPort:8898,
-		        serverMaxConnections: 1,
-	        }
-	        this.teams = new Array();
-    }</pre></code>
-單人測試模式(serverMaxConnections: 1)和雙人對戰模式(serverMaxConnections: 2)
-如果想要大於兩個人玩在不僅是修改serverMaxConnections還要在initRoom新增else if(this.option.serverMaxConnections == **option設定值** && this.clientConnections == **開始遊戲人數**)內的區塊就是初始化各個玩家的位置初始soldier數量
+- Room.js  
+<pre><code></pre></code>
+

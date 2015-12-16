@@ -80,7 +80,7 @@ GameServer.prototype.start = function(){
 		ws.send(getPlayerOptionMsg("id",this.clientConnections.toString()));
 		ws.send(getPlayerOptionMsg("status","idle"));
 		this.clientConnections += 1;
-		this.makeAPair(Room.mode.single_player); //change mode on this
+		this.makeAPair(Room.mode.two_player); //change mode on this
 	}
 	function getPlayerOptionMsg(name,value){
 		return "setting*"+name+":"+value;
@@ -118,6 +118,7 @@ GameServer.prototype.socketListener = function(){}
 GameServer.prototype.checkRoomHasPlayer = function(){
 	for(var id in this.rooms){
 		if(this.rooms[id].clients.length == 0){
+			clearInterval(this.rooms[id].loop);
 			delete this.rooms[id];
 		}
 	}

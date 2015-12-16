@@ -69,6 +69,7 @@ function draw(){
 	var msg_parts = msg.split("-");
 	teams = msg_parts;
 	for(t = 0; t< teams.length; t++){
+		console.log("[Draw]"+teams[t]);
 		team = messageToTeam(teams[t]);
 		var color = team.shift();
 		drawTeam(team,color);

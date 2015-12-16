@@ -30,13 +30,13 @@ function Room(id,mode){
 			var team = new Team( core ,"#123456");
 			this.teams.push(team);
 			this.teams[0].mouse = {'x': 150,'y': 200};
-			this.teams[0].addSoldiers(200);
+			this.teams[0].addSoldiers(100);
 
 			var core = new Core(450,300,{"x": 0,"y": 0});
 			var team = new Team( core ,"#654321");
 			this.teams.push(team);
 			this.teams[1].mouse = {'x': 450,'y': 300};
-			this.teams[1].addSoldiers(50);
+			this.teams[1].addSoldiers(100);
 
 			this.teams[0].enemy.push(this.teams[1]);
 			this.teams[1].enemy.push(this.teams[0]);
@@ -50,7 +50,9 @@ function Room(id,mode){
 			client.team = this.teams[this.clients.length - 1];
 			client.status = "normal";
 			//console.log("[Room Addplayer].teams.length:"+this.teams.length);
-			client.ws.send("setting*status:normal");
+			if(this.checkIsConnection(client)){
+				client.ws.send("setting*status:normal");
+			}
 			return true;
 		}else{
 			return false;
@@ -72,20 +74,32 @@ function Room(id,mode){
 				loser_quantity += 1;
 				if(this.clients.status != "loser"){
 					this.clients[c].status = "loser";
-					this.clients[c].ws.send("setting*status:"+this.clients[c].status);
+					if(this.checkIsConnection(this.clients[c])){
+						this.clients[c].ws.send("setting*status:"+this.clients[c].status);
+					}
 				}
 			}
 		}
 		//console.log("[Room adj]this.mode.number_of_player:"+this.mode.number_of_player);
 		if(loser_quantity == (this.mode.number_of_player-1) && this.mode.id != Room.mode.single_player.id){ //game has winner in addition to test mode 
 			for(c=0;c<this.clients.length;c++){
-				console.log("[Room adj]Player.status:"+this.clients[c].status);
+				//console.log("[Room adj]Player.status:"+this.clients[c].status);
 				if(this.clients[c].status == "normal"){
 					this.clients[c].status = "winner";
-					this.clients[c].ws.send("setting*status:"+this.clients[c].status);
+					if(this.checkIsConnection(this.clients[c])){
+						this.clients[c].ws.send("setting*status:"+this.clients[c].status);
+					}
 				}
 			}
 		}
+	}
+	this.checkIsConnection = function(client){
+		if(client.ws.readyState == 1){
+			return true;
+		}else{
+			return false;
+		}
+
 	}
 }
 Room.status = {
@@ -95,7 +109,7 @@ Room.status = {
 Room.mode = {
 	'single_player': 			{'id': 1,'number_of_player': 1},
 	'two_player': 			{'id': 2,'number_of_player': 2},
-	'bot_and_single_player': 	{'id': 3,'number_of_player': 2},
+	'bot_and_single_player': 	{'id': 3,'number_of_player': 1},
 }
 
 function loop(room){
@@ -111,13 +125,16 @@ function loop(room){
 	var all_teams_msg = "";
 	for(t=0;t<room.teams.length;t++){
 		all_teams_msg += teamToMessage(room.teams[t]);
+		//console.log("[Team]ID:"+t+";msg:"+teamToMessage(room.teams[t]));
 		if( t != room.teams.length - 1){
 			all_teams_msg += "-";
 		}
 	}
 	//send msg to client
 	for(c=0;c<room.clients.length;c++){
-		room.clients[c].ws.send("teams*"+all_teams_msg);
+		if(room.checkIsConnection(room.clients[c])){
+			room.clients[c].ws.send("teams*"+all_teams_msg);
+		}
 	}
 }
 

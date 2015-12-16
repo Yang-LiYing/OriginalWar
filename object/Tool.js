@@ -35,6 +35,9 @@ function teamToMessage(team){
 			msg += part_sym;
 		}
 	}
+	if(msg[msg.length-1] == ":"){
+		msg = msg.substr(0,msg.length-1);
+	}
 	return msg;
 }
 

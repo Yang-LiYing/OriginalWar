@@ -29,3 +29,6 @@ nodejs server,javascript game,strategy game
 - 根據已設定的模式去計算目前已連線的閒置玩家(status:idle)
 - 人數達模式的預期人數時建立新的Room並初始化
 - 將伺服器已存在閒置玩家推入Room
+
+<h4>相關內容</h4>
+ - 玩法演示 https://youtu.be/Pq40GLBi9GY

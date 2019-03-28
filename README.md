@@ -3,11 +3,13 @@ nodejs server,javascript game,strategy game
 
 <h4>開啟伺服器指令</h4>
  - ubuntu: nodejs index.js
+ - windows: node index.js
+<h4>客戶端請求連線</h4>
+ - localhost 127.0.0.1:8899/
+ - 非本地連線 伺服器ip:8899/
+<h4>操作</h4>: 滑鼠 左鍵 滾輪
 
-<h4>操作</h4>  
-- 滑鼠 左鍵 滾輪  
-
-<h4>遊戲方法: </h4>
+<h4>遊戲方法</h4>:
 - 移動滑鼠來**移動**或**收集**soldier  
 - 滑鼠左鍵**建立**barrack  
 - 移動soldier**攻擊**不同顏色的敵人

@@ -1,6 +1,7 @@
 # OriginalWar
 nodejs server,javascript game,strategy game  
-
+<h4>需求</h4>
+ - websocket: npm install ws
 <h4>開啟伺服器指令</h4>
  - ubuntu: nodejs index.js
  - windows: node index.js
